@@ -1,0 +1,238 @@
+/* ==========================================================================
+   CONFIGURAÇÕES GERAIS E FUNDO
+   ========================================================================== */
+.creators-body {
+  background-color: #050505;
+  color: #ffffff;
+  font-family: 'Barlow', sans-serif;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Fundo elegante: Grid sutil e gradientes radiais */
+.creators-main {
+  position: relative;
+  min-height: 100vh;
+  padding: 120px 0 80px 0;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 50px 50px;
+  z-index: 1;
+}
+
+/* Iluminação de fundo baseada nas cores da Alemanha (Preto, Vermelho, Dourado) */
+.creators-bg-glow {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80vw;
+  height: 80vh;
+  background: radial-gradient(circle, rgba(255, 204, 0, 0.05) 0%, rgba(221, 0, 0, 0.02) 30%, transparent 70%);
+  filter: blur(100px);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   CABEÇALHO DA SEÇÃO (TÍTULO E TEXTO)
+   ========================================================================== */
+.creators-header {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 60px auto;
+}
+
+.creators-header h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  margin-bottom: 1rem;
+  
+  /* 1. Define o gradiente de fundo */
+  background: linear-gradient(135deg, #ffffff 0%, #a8a8a8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent; 
+  text-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+}
+
+.creators-header p {
+  font-size: 1.1rem;
+  color: #a0a0a0;
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   GRID DE CARDS (RESPONSIVO)
+   ========================================================================== */
+.creators-grid {
+  display: grid;
+  gap: 30px;
+  width: 100%;
+  /* Mobile: 1 coluna, Tablet: 2, Desktop: 4 */
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .creators-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1200px) {
+  .creators-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ==========================================================================
+   ESTRUTURA DOS CARDS
+   ========================================================================== */
+.creator-wrapper {
+  perspective: 1000px;
+}
+
+.card {
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 15, 15, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 2rem; /* Mantendo os cantos arredondados */
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  
+  /* Efeito glass ultra discreto */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  
+  /* Sombra base e transições extremamente suaves */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), 
+              box-shadow 0.5s cubic-bezier(0.2, 0.8, 0.2, 1),
+              border-color 0.5s ease;
+}
+
+/* HOVER DO CARD */
+.card:hover {
+  transform: translateY(-12px) scale(1.02);
+  border-color: rgba(255, 204, 0, 0.3); /* Dourado discreto na borda */
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7), 
+              0 0 30px rgba(255, 204, 0, 0.05);
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   CONTEÚDO INTERNO DO CARD
+   ========================================================================== */
+.card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+/* FOTO CIRCULAR */
+.photo-wrapper {
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.creator-photo {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  transition: all 0.5s ease;
+}
+
+/* Brilho da foto no hover */
+.card:hover .creator-photo {
+  border-color: rgba(255, 204, 0, 0.8);
+  box-shadow: 0 0 25px rgba(255, 204, 0, 0.3);
+  transform: scale(1.05);
+}
+
+/* NOME */
+.heading {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 5px 0;
+  letter-spacing: 0.5px;
+}
+
+/* CARGO / SUBTÍTULO */
+.role {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #ffcc00; /* Dourado da Alemanha */
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+}
+
+/* DESCRIÇÃO */
+.description {
+  font-size: 0.95rem;
+  color: #b0b0b0;
+  line-height: 1.5;
+  margin-bottom: 25px;
+  flex-grow: 1; /* Empurra os ícones para o fundo */
+}
+
+/* ==========================================================================
+   ÍCONES DE REDES SOCIAIS
+   ========================================================================== */
+.icons {
+  display: flex;
+  gap: 15px;
+  margin-top: auto;
+}
+
+.icons a {
+  color: #666666;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.05);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.icons a:hover {
+  color: #ffffff;
+  background: rgba(255, 204, 0, 0.8);
+  transform: translateY(-3px) scale(1.1);
+  box-shadow: 0 5px 15px rgba(255, 204, 0, 0.4);
+}
+
+/* ==========================================================================
+   ANIMAÇÕES DE ENTRADA (FADE IN + SLIDE UP)
+   ========================================================================== */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), 
+              transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* A variável --delay está no HTML em cada card */
+.creator-wrapper.fade-in-up {
+  transition-delay: var(--delay);
+}
+
+.fade-in-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
