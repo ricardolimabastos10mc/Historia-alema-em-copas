@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Trabalho escolar sobre a Alemanha na Copa do Mundo: titulos, jogos, placares, sedes e curiosidades.">
+  <title>Alemanha na Copa do Mundo | Trabalho Escolar</title>
+
+  <!-- Bootstrap CSS: usado apenas para grid, tabelas e espacamentos. Nao ha JavaScript. -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Google Fonts para uma tipografia mais moderna. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&family=Source+Serif+4:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome: icones decorativos e informativos. -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- CSS principal do trabalho. -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/efeito-fundo.css') }}">
+</head>
+<body>
+  <!-- Canvas do efeito de fundo interativo (constelacao nas cores da Alemanha) -->
+  <canvas id="bgFx" aria-hidden="true"></canvas>
+  <!-- Barra de progresso de leitura -->
+  <div class="scroll-progress" aria-hidden="true"></div>
+
+  <!-- Faixa superior inspirada nas cores da bandeira da Alemanha. -->
+  <div class="flag-strip" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <nav class="navbar-school container" aria-label="Menu principal">
+      <a class="brand" href="#inicio" aria-label="Ir para o inicio">
+        <span class="brand__mark"><i class="fa-solid fa-futbol"></i></span>
+        <span class="brand__text">Alemanha<span>Copa</span></span>
+      </a>
+
+      <!-- Menu mobile sem JavaScript: o details abre e fecha sozinho no navegador. -->
+      <details class="mobile-menu">
+        <summary aria-label="Abrir menu">
+          <i class="fa-solid fa-bars"></i>
+        </summary>
+        <div class="mobile-menu__links">
+          <a href="#inicio">Inicio</a>
+          <a href="#titulos">Títulos</a>
+          <a href="#jogos">Jogos</a>
+          <a href="#estatisticas">Estatísticas</a>
+          <a href="#sobre">Sobre</a>
+          <a href="{{ url_for('halldaslendas') }}">Hall das Lendas</a>
+          <a href="{{ url_for('book') }}">História de cada título</a>
+          <a href="{{url_for('criadores')}}">Criadores</a>
+        </div>
+      </details>
+
+      <div class="desktop-menu">
+        <a href="#inicio">Início</a>
+        <a href="#titulos">Títulos</a>
+        <a href="#jogos">Jogos</a>
+        <a href="#estatisticas">Estatísticas</a>
+        <a href="#sobre">Sobre</a>
+        <a href="{{ url_for('halldaslendas') }}">Hall das Lendas</a>
+        <a href="{{ url_for('book') }}">História de cada título</a>
+        <a href="{{url_for('criadores')}}">Criadores</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HERO: primeira area de impacto visual do site. -->
+    <section id="inicio" class="hero-section">
+      <div class="hero-section__glow" aria-hidden="true"></div>
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow"><i class="fa-solid fa-trophy"></i> 4 vezes campeã mundial</p>
+          <h1>Alemanha na Copa do Mundo</h1>
+          <p class="hero-lead">
+            Uma viagem visual pela história da selecao alema: titulos, sedes,
+            jogos marcantes, placares e números que fizeram parte do maior torneio de futebol.
+          </p>
+          <div class="hero-actions">
+      <a class="btn-main" href="#titulos">
+        <i class="fa-solid fa-medal"></i>
+        Ver títulos
+      </a>
+      <a class="btn-ghost" href="#jogos">Explorar jogos</a>
+      
+      <a class="btn-halldaslendas" href="{{ url_for('halldaslendas') }}">
+        <i class="fa-solid fa-crown"></i>
+        Hall das lendas
+      </a>
+      
+      <a class="btn-halldaslendas" href="{{ url_for('book') }}">
+        <i class="fa-solid fa-book"></i>
+        História de cada título
+      </a>
+      <a class="btn-halldaslendas" href="{{ url_for('criadores') }}">
+        <i class="fa-solid fa-users"></i>
+        Criadores do site
+      </a>
+    </div>
+  </div>
+
+        </div>
+        <aside class="hero-visual" aria-label="Taca da Copa do Mundo e resumo da Alemanha">
+          <div class="trophy-3d-wrapper">
+          <div class="trophy-tracker tr-1"></div>
+          <div class="trophy-tracker tr-2"></div>
+          <div class="trophy-tracker tr-3"></div>
+          <div class="trophy-tracker tr-4"></div>
+          <div class="trophy-tracker tr-5"></div>
+          <div class="trophy-tracker tr-6"></div>
+          <div class="trophy-tracker tr-7"></div>
+          <div class="trophy-tracker tr-8"></div>
+          <div class="trophy-tracker tr-9"></div>
+
+        <div class="trophy-3d-container" id="trophyCanvasContainer">
+          </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+        
+</div>     
+          <div class="hero-card spotlight-card">
+            <div class="hero-card__top">
+              <span>Resumo histórico</span>
+              <i class="fa-solid fa-flag"></i>
+            </div>
+            <div class="hero-score">
+              <strong>1954</strong>
+              <span>1974</span>
+              <span>1990</span>
+              <strong>2014</strong>
+            </div>
+            <p>Copas vencidas pela Alemanha ou Alemanha Ocidental.</p>
+            <div class="mini-stats">
+              <div>
+                <strong>4</strong>
+                <span>Títulos</span>
+              </div>
+              <div>
+                <strong>8</strong>
+                <span>Finais</span>
+              </div>
+              <div>
+                <strong>20</strong>
+                <span>Participações*</span>
+              </div>
+            </div>
+            <small>*Número usado como referência histórica ate a Copa de 2022.</small>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Letreiro continuo com os anos das conquistas, feito apenas com CSS. -->
+    <div class="conquest-ticker" aria-label="Anos dos titulos mundiais da Alemanha">
+      <div class="ticker-track">
+        <span>1954 Campeã</span>
+        <span>1974 Campeã</span>
+        <span>1990 Campeã</span>
+        <span>2014 Campeã</span>
+        <span>1954 Campeã</span>
+        <span>1974 Campeã</span>
+        <span>1990 Campeã</span>
+        <span>2014 Campeã</span>
+      </div>
+    </div>
+
+    <!-- TITULOS: disco selecionavel + cards em formato de linha do tempo. -->
+    <section id="titulos" class="section-block titles-section">
+      <div class="container">
+        <div class="section-heading">
+          <p class="section-kicker"><i class="fa-solid fa-star"></i> Títulos Mundiais</p>
+          <h2>Anos em que a Alemanha foi campeã</h2>
+          <p>
+            A seleção alemã conquistou quatro Copas do Mundo. Abaixo estao os anos,
+            as sedes dos torneios e os placares das finais.
+          </p>
+        </div>
+
+        <!-- Seletor + card do celular lado a lado -->
+        <div class="knob-with-phone">
+          <!-- Seletor visual inspirado em um controle giratorio, feito apenas com radio + CSS. -->
+          <div class="world-cup-knob" aria-label="Seletor das Copas vencidas pela Alemanha">
+            <input id="cup_1954" name="germany_cup" type="radio" checked>
+            <input id="cup_1974" name="germany_cup" type="radio">
+            <input id="cup_1990" name="germany_cup" type="radio">
+            <input id="cup_2014" name="germany_cup" type="radio">
+
+            <div class="cup-knob">
+              <label class="cup-option cup-option--1954" for="cup_1954">
+                <span>1954</span>
+              </label>
+              <label class="cup-option cup-option--1974" for="cup_1974">
+                <span>1974</span>
+              </label>
+              <label class="cup-option cup-option--1990" for="cup_1990">
+                <span>1990</span>
+              </label>
+              <label class="cup-option cup-option--2014" for="cup_2014">
+                <span>2014</span>
+              </label>
+
+              <!-- Ponteiro: agulha dourada + medalha com a taca real como indicador. -->
+              <div class="cup-pointer">
+                <span class="cup-pointer__line" aria-hidden="true"></span>
+                <span class="cup-pointer__badge">
+                  <img src="{{ url_for('static', filename='img/copa.png') }}" alt="">
+                </span>
+              </div>
+
+              <div class="cup-knob__center">
+                <strong>4</strong>
+                <span>Copas</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card "Hello" - From Uiverse.io by Rodrypaladin -->
+          <!-- Mostra uma curiosidade aleatoria do ano clicado no seletor ao lado -->
+          <div class="uiv-card uiv-card--hidden" id="uivCard">
+            <div class="uiv-btn1"></div>
+            <div class="uiv-btn2"></div>
+            <div class="uiv-btn3"></div>
+            <div class="uiv-btn4"></div>
+            <div class="uiv-card-int">
+              <div class="uiv-hello" id="uivHello">Hello
+                <span class="uiv-hidden" id="uivHiddenText">uiverse</span>
+              </div>
+            </div>
+            <div class="uiv-top">
+              <div class="uiv-camera">
+                <div class="uiv-int"></div>
+              </div>
+              <div class="uiv-speaker"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-grid">
+          <article class="title-card spotlight-card">
+            <span class="title-card__year">1954</span>
+            <h3>O Milagre de Berna</h3>
+            <p><i class="fa-solid fa-location-dot"></i> Sede: Suica</p>
+            <p><i class="fa-solid fa-futbol"></i> Final: Alemanha Ocidental 3 x 2 Hungria</p>
+          </article>
+
+          <article class="title-card spotlight-card">
+            <span class="title-card__year">1974</span>
+            <h3>Campeã em casa</h3>
+            <p><i class="fa-solid fa-location-dot"></i> Sede: Alemanha Ocidental</p>
+            <p><i class="fa-solid fa-futbol"></i> Final: Alemanha Ocidental 2 x 1 Holanda</p>
+          </article>
+
+          <article class="title-card spotlight-card">
+            <span class="title-card__year">1990</span>
+            <h3>Força na Italia</h3>
+            <p><i class="fa-solid fa-location-dot"></i> Sede: Italia</p>
+            <p><i class="fa-solid fa-futbol"></i> Final: Alemanha Ocidental 1 x 0 Argentina</p>
+          </article>
+
+          <article class="title-card spotlight-card">
+            <span class="title-card__year">2014</span>
+            <h3>Triunfo no Brasil</h3>
+            <p><i class="fa-solid fa-location-dot"></i> Sede: Brasil</p>
+            <p><i class="fa-solid fa-futbol"></i> Final: Alemanha 1 x 0 Argentina</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- JOGOS: tabelas estaticas, organizadas por edicao campea. -->
+    <section id="jogos" class="section-block games-section">
+      <div class="container">
+        <div class="section-heading section-heading--light">
+          <p class="section-kicker"><i class="fa-solid fa-table"></i> Jogos e Placares</p>
+          <h2>Campanhas campeãs jogo a jogo</h2>
+          <p>
+            As tabelas mostram partidas, fases e resultados das Copas em que a Alemanha
+            levantou a taça.
+          </p>
+        </div>
+
+        <div class="games-grid">
+          <article class="game-table-card spotlight-card">
+            <div class="table-title">
+              <h3>1954 - Suica</h3>
+              <span>6 jogos</span>
+            </div>
+            <div class="table-responsive">
+              <table class="table table-striped align-middle">
+                <thead>
+                  <tr>
+                    <th>Fase</th>
+                    <th>Partida</th>
+                    <th>Placar</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>Grupo</td><td>Alemanha Ocidental x Turquia</td><td>4 x 1</td></tr>
+                  <tr><td>Grupo</td><td>Alemanha Ocidental x Hungria</td><td>3 x 8</td></tr>
+                  <tr><td>Desempate</td><td>Alemanha Ocidental x Turquia</td><td>7 x 2</td></tr>
+                  <tr><td>Quartas</td><td>Alemanha Ocidental x Iugoslavia</td><td>2 x 0</td></tr>
+                  <tr><td>Semifinal</td><td>Alemanha Ocidental x Austria</td><td>6 x 1</td></tr>
+                  <tr><td>Final</td><td>Alemanha Ocidental x Hungria</td><td>3 x 2</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+
+          <article class="game-table-card spotlight-card">
+            <div class="table-title">
+              <h3>1974 - Alemanha Ocidental</h3>
+              <span>7 jogos</span>
+            </div>
+            <div class="table-responsive">
+              <table class="table table-striped align-middle">
+                <thead>
+                  <tr>
+                    <th>Fase</th>
+                    <th>Partida</th>
+                    <th>Placar</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>Grupo</td><td>Alemanha Ocidental x Chile</td><td>1 x 0</td></tr>
+                  <tr><td>Grupo</td><td>Alemanha Ocidental x Australia</td><td>3 x 0</td></tr>
+                  <tr><td>Grupo</td><td>Alemanha Ocidental x Alemanha Oriental</td><td>0 x 1</td></tr>
+                  <tr><td>2a fase</td><td>Alemanha Ocidental x Iugoslavia</td><td>2 x 0</td></tr>
+                  <tr><td>2a fase</td><td>Alemanha Ocidental x Suecia</td><td>4 x 2</td></tr>
+                  <tr><td>2a fase</td><td>Alemanha Ocidental x Polonia</td><td>1 x 0</td></tr>
+                  <tr><td>Final</td><td>Alemanha Ocidental x Holanda</td><td>2 x 1</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+
+          <article class="game-table-card spotlight-card">
+            <div class="table-title">
+              <h3>1990 - Italia</h3>
+              <span>7 jogos</span>
+            </div>
+            <div class="table-responsive">
+              <table class="table table-striped align-middle">
+                <thead>
+                  <tr>
+                    <th>Fase</th>
+                    <th>Partida</th>
+                    <th>Placar</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>Grupo</td><td>Alemanha Ocidental x Iugoslavia</td><td>4 x 1</td></tr>
+                  <tr><td>Grupo</td><td>Alemanha Ocidental x Emirados Arabes Unidos</td><td>5 x 1</td></tr>
+                  <tr><td>Grupo</td><td>Alemanha Ocidental x Colombia</td><td>1 x 1</td></tr>
+                  <tr><td>Oitavas</td><td>Alemanha Ocidental x Holanda</td><td>2 x 1</td></tr>
+                  <tr><td>Quartas</td><td>Alemanha Ocidental x Tchecoslovaquia</td><td>1 x 0</td></tr>
+                  <tr><td>Semifinal</td><td>Alemanha Ocidental x Inglaterra</td><td>1 x 1 (4 x 3 pen.)</td></tr>
+                  <tr><td>Final</td><td>Alemanha Ocidental x Argentina</td><td>1 x 0</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+
+          <article class="game-table-card spotlight-card">
+            <div class="table-title">
+              <h3>2014 - Brasil</h3>
+              <span>7 jogos</span>
+            </div>
+            <div class="table-responsive">
+              <table class="table table-striped align-middle">
+                <thead>
+                  <tr>
+                    <th>Fase</th>
+                    <th>Partida</th>
+                    <th>Placar</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>Grupo</td><td>Alemanha x Portugal</td><td>4 x 0</td></tr>
+                  <tr><td>Grupo</td><td>Alemanha x Gana</td><td>2 x 2</td></tr>
+                  <tr><td>Grupo</td><td>Alemanha x Estados Unidos</td><td>1 x 0</td></tr>
+                  <tr><td>Oitavas</td><td>Alemanha x Argelia</td><td>2 x 1 pror.</td></tr>
+                  <tr><td>Quartas</td><td>Alemanha x Franca</td><td>1 x 0</td></tr>
+                  <tr><td>Semifinal</td><td>Alemanha x Brasil</td><td>7 x 1</td></tr>
+                  <tr><td>Final</td><td>Alemanha x Argentina</td><td>1 x 0 pror.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ESTATISTICAS: barras e circulos feitos apenas com CSS. -->
+    <section id="estatisticas" class="section-block stats-section">
+      <div class="container">
+        <div class="section-heading">
+          <p class="section-kicker"><i class="fa-solid fa-chart-simple"></i> Estatísticas</p>
+          <h2>Números que mostram a grandeza alemã</h2>
+          <p>Gráficos visuais em CSS puro para representar títulos, vitórias e gols.</p>
+        </div>
+
+        <div class="bento-grid">
+          <article class="stat-card stat-card--large spotlight-card">
+            <div class="circle-progress circle-progress--titles">
+              <span>4</span>
+            </div>
+            <h3>Títulos mundiais</h3>
+            <p>Campeã in 1954, 1974, 1990 e 2014.</p>
+          </article>
+
+          <article class="stat-card spotlight-card">
+            <div class="circle-progress circle-progress--wins">
+              <span>68</span>
+            </div>
+            <h3>Vitorias historicas</h3>
+            <p>Referência geral em Copas ate 2022.</p>
+          </article>
+
+          <article class="stat-card spotlight-card">
+            <div class="circle-progress circle-progress--goals">
+              <span>232</span>
+            </div>
+            <h3>Gols marcados</h3>
+            <p>Um dos ataques mais produtivos da historia do torneio.</p>
+          </article>
+
+          <div class="progress-panel bento-wide spotlight-card">
+            <h3><i class="fa-solid fa-ranking-star"></i> Comparativo visual</h3>
+            <div class="progress-line">
+              <div class="progress-line__label"><span>Títulos</span><strong>4</strong></div>
+              <div class="progress-line__bar"><span class="progress-fill progress-fill--titles"></span></div>
+            </div>
+            <div class="progress-line">
+              <div class="progress-line__label"><span>Finais disputadas</span><strong>8</strong></div>
+              <div class="progress-line__bar"><span class="progress-fill progress-fill--finals"></span></div>
+            </div>
+            <div class="progress-line">
+              <div class="progress-line__label"><span>Gols em Copas</span><strong>232</strong></div>
+              <div class="progress-line__bar"><span class="progress-fill progress-fill--goals"></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CURIOSIDADES E SOBRE: conteudo de apoio para apresentacao escolar. -->
+    <section id="sobre" class="section-block about-section">
+      <div class="container about-grid">
+        <div>
+          <div class="section-heading section-heading--left">
+            <p class="section-kicker"><i class="fa-solid fa-lightbulb"></i> Curiosidades</p>
+            <h2>Detalhes marcantes da Alemanha nas Copas</h2>
+          </div>
+          <div class="curiosity-list">
+            <article class="glass-card spotlight-card">
+              <i class="fa-solid fa-bolt"></i>
+              <div>
+                <h3>1954 mudou a historia</h3>
+                <p>A final contra a Hungria ficou conhecida como "Milagre de Berna".</p>
+              </div>
+            </article>
+            <article class="glass-card spotlight-card">
+              <i class="fa-solid fa-house-flag"></i>
+              <div>
+                <h3>1974 teve titulo em casa</h3>
+                <p>A Alemanha Ocidental venceu a Copa sediada no proprio pais.</p>
+              </div>
+            </article>
+            <article class="glass-card spotlight-card">
+              <i class="fa-solid fa-7"></i>
+              <div>
+                <h3>7 x 1 em 2014</h3>
+                <p>A semifinal contra o Brasil se tornou uma das partidas mais lembradas da historia.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- Pasta de fotos encaixada perfeitamente na grade visual -->
+        <div class="folder-container">
+          <div class="folder-back"></div>
+          <div class="photo-stack">
+            <div class="photo">
+              <img src="{{ url_for('static', filename='img/2014.png') }}" alt="Alemanha 2014">
+            </div>
+            <div class="photo">
+              <img src="{{ url_for('static', filename='img/1974.png') }}" alt="Alemanha 1974">
+            </div>
+            <div class="photo">
+              <img src="{{ url_for('static', filename='img/1954.png') }}" alt="Alemanha 1954">
+            </div>
+            <div class="photo">
+              <img src="{{ url_for('static', filename='img/1990.png') }}" alt="Alemanha 1990">
+            </div>
+          </div>
+          <div class="folder-front">
+            🏆 Campeões do Mundo
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 🌍 OS CAMINHOS DA GLORIA: globo 3D premium com as sedes dos titulos -->
+    <section id="caminhos-gloria" class="paths-section">
+      <div class="paths-section__glow" aria-hidden="true"></div>
+      <div class="paths-section__light paths-section__light--left" aria-hidden="true"></div>
+      <div class="paths-section__light paths-section__light--bottom" aria-hidden="true"></div>
+
+      <div class="container paths-container">
+
+        <div class="section-heading paths-heading">
+          <p class="section-kicker paths-reveal" data-reveal="1"><i class="fa-solid fa-earth-americas"></i> Os Caminhos da Gl&oacute;ria</p>
+          <h2 class="paths-reveal" data-reveal="2">As Conquistas Mundiais da Alemanha</h2>
+          <p class="paths-lead paths-reveal" data-reveal="3">
+            Explore os lugares onde a sele&ccedil;&atilde;o alem&atilde; escreveu alguns dos cap&iacute;tulos mais importantes da hist&oacute;ria das Copas do Mundo.
+          </p>
+        </div>
+
+        <div class="globe-experience paths-reveal" data-reveal="4">
+          <div id="globe3d-container" class="globe3d-container" role="img"
+               aria-label="Globo 3D interativo com as cidades onde a Alemanha foi campea mundial: Berna 1954, Munique 1974, Roma 1990 e Rio de Janeiro 2014"></div>
+
+          <!-- Linha luminosa que conecta o marcador a caixa de informacoes -->
+          <svg id="globe-connector" class="globe-connector" aria-hidden="true">
+            <line id="globe-connector-line" x1="0" y1="0" x2="0" y2="0"></line>
+          </svg>
+
+          <div id="globe-tooltip" class="globe-tooltip">
+            <span class="tooltip-badge" id="tooltip-year">🏆 1954</span>
+            <h4 class="tooltip-title" id="tooltip-city">Berna — Suíça</h4>
+            <p class="tooltip-desc" id="tooltip-desc">Primeira Copa conquistada.</p>
+          </div>
+
+          <p class="globe-hint" aria-hidden="true"><i class="fa-solid fa-hand-pointer"></i> Arraste para girar &bull; passe o mouse sobre os pontos</p>
+        </div>
+
+      </div>
+    </section>
+    </main>
+
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <a class="brand brand--footer" href="#inicio">
+          <span class="brand__mark"><i class="fa-solid fa-futbol"></i></span>
+          <span class="brand__text">Alemanha<span>Copa</span></span>
+        </a>
+        <p>Site educativo feito com HTML e CSS para trabalho escolar.</p>
+      </div>
+      <div>
+        <h2>Mapa do site</h2>
+        <a href="#titulos">ítulos</a>
+        <a href="#jogos">Jogos</a>
+        <a href="#estatisticas">Estatisticas</a>
+        <a href="#sobre">Sobre</a>
+      </div>
+      <div>
+        <h2>Fontes sugeridas</h2>
+        <a href="https://www.fifa.com/" target="_blank" rel="noopener">FIFA</a>
+        <a href="https://www.dfb.de/" target="_blank" rel="noopener">Fed. Alemã de Futebol</a>
+      </div>
+      <div>
+        <h2>Redes</h2>
+        <div class="social-card" aria-label="Redes sociais">
+          <ul>
+            <li class="social-iso">
+              <span></span><span></span><span></span>
+              <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">
+                <i class="fa-brands fa-instagram social-icon"></i>
+              </a>
+              <div class="social-text">Instagram</div>
+            </li>
+            <li class="social-iso">
+              <span></span><span></span><span></span>
+              <a href="https://wa.me/" target="_blank" rel="noopener" aria-label="WhatsApp">
+                <i class="fa-brands fa-whatsapp social-icon"></i>
+              </a>
+              <div class="social-text">WhatsApp</div>
+            </li>
+            <li class="social-iso">
+              <span></span><span></span><span></span>
+              <a href="https://github.com/" target="_blank" rel="noopener" aria-label="GitHub">
+                <i class="fa-brands fa-github social-icon"></i>
+              </a>
+              <div class="social-text">GitHub</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts no final para otimizar o carregamento -->
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/efeito-fundo.js') }}"></script>
+</body>
+</html>

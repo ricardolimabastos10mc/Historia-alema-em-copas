@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Conheça os criadores do trabalho escolar sobre a Alemanha na Copa do Mundo.">
+  <title>Criadores | Alemanha na Copa</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/efeito-fundo.css') }}">
+  <link rel="stylesheet" href="{{url_for('static', filename='css/halldaslendas.css')}}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/criadores.css') }}">
+</head>
+
+<body class="creators-body">
+  <canvas id="bgFx" aria-hidden="true"></canvas>
+  <div class="flag-strip" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <nav class="navbar-school container" aria-label="Menu principal">
+      <a class="brand" href="{{ url_for('index') }}" aria-label="Ir para o inicio">
+        <span class="brand__mark"><i class="fa-solid fa-futbol"></i></span>
+        <span class="brand__text">Alemanha<span>Copa</span></span>
+      </a>
+
+      <details class="mobile-menu">
+        <summary aria-label="Abrir menu"><i class="fa-solid fa-bars"></i></summary>
+        <div class="mobile-menu__links">
+          <a href="{{ url_for('index') }}#inicio">Inicio</a>
+          <a href="{{ url_for('index') }}#titulos">Titulos</a>
+          <a href="{{ url_for('index') }}#jogos">Jogos</a>
+          <a href="{{ url_for('index') }}#estatisticas">Estatisticas</a>
+          <a href="{{ url_for('halldaslendas') }}">Hall das Lendas</a>
+          <a href="{{ url_for('book') }}">História de cada titulo</a>
+          <a href="{{ url_for('criadores') }}">Criadores</a>
+        </div>
+      </details>
+
+      <div class="desktop-menu">
+        <a href="{{ url_for('index') }}#inicio">Inicio</a>
+        <a href="{{ url_for('index') }}#titulos">Titulos</a>
+        <a href="{{ url_for('index') }}#jogos">Jogos</a>
+        <a href="{{ url_for('index') }}#estatisticas">Estatisticas</a>
+        <a href="{{ url_for('halldaslendas') }}">Hall das Lendas</a>
+        <a href="{{ url_for('book') }}">História</a>
+        <a href="{{ url_for('criadores') }}" class="active">Criadores</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="creators-main">
+    <div class="creators-bg-glow"></div>
+    <a href="{{url_for('index')}}" class="back-link"></a>
+    <a href="{{url_for('index')}}" class="btn-voltar">
+        <span>←</span> Voltar
+    </a>
+
+    <section class="container creators-section">
+      <div class="creators-header fade-in-up">
+        <h1>👨‍💻 Nossa Equipe</h1>
+        <p>
+          Este projeto foi desenvolvido com dedicação para oferecer uma experiência única e imersiva sobre a história da Seleção Alemã de Futebol.
+        </p>
+      </div>
+
+      <div class="creators-grid">
+        <div class="creator-wrapper fade-in-up" style="--delay: 0.1s;">
+          <div class="card">
+            <div class="card-content">
+              <div class="photo-wrapper">
+                <img
+                  src="https://ui-avatars.com/api/?name=Ricardo&background=111&color=fff&size=150"
+                  alt="Foto do Ricardo"
+                  class="creator-photo"
+                >
+              </div>
+
+              <h2 class="heading">Ricardo</h2>
+              <span class="role">Desenvolvedor</span>
+              <p class="description">
+                Responsável pelo desenvolvimento e integração do site, garantindo que tudo funcionasse corretamente.
+              </p>
+
+
+
+              <div class="icons">
+                <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="creator-wrapper fade-in-up" style="--delay: 0.2s;">
+          <div class="card">
+            <div class="card-content">
+              <div class="photo-wrapper">
+                <img
+                  src="https://ui-avatars.com/api/?name=Ana&background=111&color=fff&size=150"
+                  alt="Foto da Ana"
+                  class="creator-photo"
+                >
+              </div>
+
+              <h2 class="heading">Eduardo</h2>
+              <span class="role">Testes</span>
+              <p class="description">
+                Realizou testes de funcionamento e ajudou a validar a navegação e a responsividade das páginas.
+              </p>
+
+
+              <div class="icons">
+                <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="creator-wrapper fade-in-up" style="--delay: 0.3s;">
+          <div class="card">
+            <div class="card-content">
+              <div class="photo-wrapper">
+                <img
+                  src="https://ui-avatars.com/api/?name=Carlos&background=111&color=fff&size=150"
+                  alt="Foto do Carlos"
+                  class="creator-photo"
+                >
+              </div>
+
+              <h2 class="heading">Italo</h2>
+              <span class="role">Testes</span>
+              <p class="description">
+                Realizou testes e validações para garantir que as páginas funcionassem bem em diferentes dispositivos.
+              </p>
+
+
+              <div class="icons">
+                <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="creator-wrapper fade-in-up" style="--delay: 0.4s;">
+          <div class="card">
+            <div class="card-content">
+              <div class="photo-wrapper">
+                <img
+                  src="https://ui-avatars.com/api/?name=Julia&background=111&color=fff&size=150"
+                  alt="Foto da Julia"
+                  class="creator-photo"
+                >
+              </div>
+
+              <h2 class="heading">Jefferson</h2>
+              <span class="role">Testes</span>
+              <p class="description">
+                Testou as informações do site e conferiu se tudo estava correto e fácil de entender.
+              </p>
+
+
+              <div class="icons">
+                <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <a class="brand brand--footer" href="#inicio">
+          <span class="brand__mark"><i class="fa-solid fa-futbol"></i></span>
+          <span class="brand__text">Alemanha<span>Copa</span></span>
+        </a>
+        <p>Site educativo feito com HTML e CSS para trabalho escolar.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const elements = document.querySelectorAll('.fade-in-up');
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px"
+      });
+
+      elements.forEach(el => observer.observe(el));
+    });
+  </script>
+</body>
+</html>
+

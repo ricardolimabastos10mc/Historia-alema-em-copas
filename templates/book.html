@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Livro interativo sobre os 4 títulos da Alemanha na Copa do Mundo: 1954, 1974, 1990 e 2014.">
+  <title>Livro Interativo - Alemanha na Copa do Mundo</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&family=Source+Serif+4:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+ 
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <!-- CSS do Livro -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/book.css') }}">
+
+  <style>
+    /* Estilo premium da página de demonstração */
+    body {
+      margin: 0;
+      font-family: "Barlow", Arial, sans-serif;
+      background:
+        radial-gradient(circle at center, #1b1a1c 0%, #080809 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 16px 40px;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle at 50% 30%, rgba(245, 194, 66, 0.06), transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .demo-title {
+      text-align: center;
+      margin-bottom: 24px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .demo-title h1 {
+      font-family: "Source Serif 4", Georgia, serif;
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
+      color: #ffffff;
+      margin: 0 0 10px;
+      font-weight: 700;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.6);
+    }
+
+    .demo-title p {
+      color: #a0a0a5;
+      font-size: 1rem;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="demo-title">
+    <p style="color:#f7c948;font-weight:800;text-transform:uppercase;letter-spacing:0.15em;font-size:0.8rem;margin-bottom:10px;">
+      <i class="fa-solid fa-trophy"></i> 4 vezes campeã mundial
+    </p>
+    <h1>A História dos Títulos da Alemanha</h1>
+    <p>Clique no livro para explorar cada conquista</p>
+  </div>
+
+  <!-- ==================== LIVRO INTERATIVO ==================== -->
+  <div class="book-wrapper">
+
+    <!-- Botão fechar -->
+    <button class="book-close-btn" title="Fechar livro">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+
+    <!-- Container principal do livro -->
+    <div class="book-container">
+
+      <!-- === CAPA FRONTAL === -->
+      <div class="book-cover">
+        <!-- Frente da capa -->
+        <div class="cover-front">
+          <img class="cover-front__image" src="{{ url_for('static', filename='img/cover.png') }}" alt="Capa do livro - Alemanha na Copa do Mundo">
+          <div class="cover-front__overlay"></div>
+          <div class="cover-front__info">
+            <div class="cover-front__title">Alemanha na Copa do Mundo — Os 4 Títulos</div>
+            <div class="cover-front__author">Trabalho Escolar</div>
+          </div>
+          <div class="cover-front__spine"></div>
+          <div class="cover-front__spine-line"></div>
+          <div class="cover-front__flag-ribbon">
+            <span></span><span></span><span></span>
+          </div>
+        </div>
+
+        <!-- Verso da capa (parte interna) -->
+        <div class="cover-back">
+          <div class="cover-back__icon">
+            <i class="fa-solid fa-book-open"></i>
+          </div>
+          <div class="cover-back__title">Alemanha na Copa do Mundo</div>
+          <div class="cover-back__divider"></div>
+          <div class="cover-back__subtitle">Edição Interativa • 4 Conquistas</div>
+        </div>
+      </div>
+
+      <!-- === PÁGINAS === -->
+      <div class="book-pages">
+
+        <!-- ==================== PÁGINA 1: 1954 (frente) / 1954 continuação (verso) ==================== -->
+        <div class="book-page" style="z-index: 8;">
+          <!-- Frente: Título 1954 -->
+          <div class="page-front">
+            <div class="page-number page-number--right">1</div>
+            <div class="page-content">
+              <div class="page-year-badge-wrapper">
+                <span class="page-year-badge">★ 1954 ★</span>
+              </div>
+              <h3>O Milagre de Berna</h3>
+              <div class="page-sede">
+                <i class="fa-solid fa-location-dot"></i>
+                Sede: Suíça
+              </div>
+              <p>
+                A Copa do Mundo de 1954, realizada na Suíça, ficou marcada por uma das maiores
+                surpresas da história do futebol. A seleção da Hungria, liderada por Ferenc Puskás,
+                era considerada imbatível — estava invicta havia quatro anos e havia goleado a
+                Alemanha Ocidental por 8 a 3 na fase de grupos.
+              </p>
+              <p>
+                Porém, o técnico alemão Sepp Herberger tinha um plano. Ele poupou jogadores
+                titulares naquela goleada, guardando forças para as fases seguintes. A Alemanha
+                se classificou ao vencer a Turquia duas vezes e passou pela Iugoslávia e Áustria
+                com autoridade.
+              </p>
+              <div class="page-score-box">
+                <span class="team">Alemanha<br>Ocidental</span>
+                <span class="score">3 x 2</span>
+                <span class="team">Hungria</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Verso: continuação 1954 -->
+          <div class="page-back">
+            <div class="page-number page-number--left">2</div>
+            <div class="page-content">
+              <p>
+                Na final, disputada em Berna no dia 4 de julho, a Hungria abriu 2 a 0 em apenas
+                8 minutos. Tudo parecia decidido. Mas a Alemanha de Herberger reagiu com uma
+                garra impressionante: Max Morlock diminuiu aos 10 minutos e Helmut Rahn empatou
+                aos 18.
+              </p>
+              <p>
+                O jogo seguiu equilibrado até que, aos 84 minutos, Helmut Rahn recebeu a bola
+                na entrada da área e chutou forte para marcar o gol da virada. A Alemanha vencia
+                a Copa pela primeira vez, e o feito ficou imortalizado como <strong>"O Milagre de Berna"</strong>
+                (<em>Das Wunder von Bern</em>).
+              </p>
+              <div class="page-highlight">
+                <i class="fa-solid fa-star"></i>
+                <span>
+                  Essa vitória teve um significado que ia além do futebol: para a Alemanha do
+                  pós-guerra, o título representou a reconstrução moral e a esperança de um
+                  novo começo para o país.
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== PÁGINA 2: 1974 (frente) / 1974 continuação (verso) ==================== -->
+        <div class="book-page" style="z-index: 7;">
+          <!-- Frente: Título 1974 -->
+          <div class="page-front">
+            <div class="page-number page-number--right">3</div>
+            <div class="page-content">
+              <div class="page-year-badge-wrapper">
+                <span class="page-year-badge">★ 1974 ★</span>
+              </div>
+              <h3>Campeã em Casa</h3>
+              <div class="page-sede">
+                <i class="fa-solid fa-location-dot"></i>
+                Sede: Alemanha Ocidental
+              </div>
+              <p>
+                Em 1974, a Alemanha Ocidental sediou a Copa do Mundo e contava com uma geração
+                brilhante de jogadores, liderada pelo elegante zagueiro-líbero Franz Beckenbauer,
+                o goleiro Sepp Maier e o artilheiro Gerd Müller.
+              </p>
+              <p>
+                Na fase de grupos, a seleção sofreu uma derrota histórica: perdeu por 1 a 0
+                para a Alemanha Oriental, no único confronto entre as duas nações em uma Copa
+                do Mundo. Apesar disso, a equipe se classificou e avançou pela segunda fase
+                com vitórias sobre Iugoslávia (2 a 0), Suécia (4 a 2) e Polônia (1 a 0).
+              </p>
+              <div class="page-score-box">
+                <span class="team">Alemanha<br>Ocidental</span>
+                <span class="score">2 x 1</span>
+                <span class="team">Holanda</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Verso: continuação 1974 -->
+          <div class="page-back">
+            <div class="page-number page-number--left">4</div>
+            <div class="page-content">
+              <p>
+                A grande final foi disputada contra a Holanda de Johan Cruyff, que praticava o
+                revolucionário "Futebol Total". A partida começou de forma chocante: a Holanda
+                tocou a bola desde o centro do campo e chegou à área alemã sem que os anfitriões
+                encostassem na bola. Cruyff foi derrubado, e os holandeses abriram o placar de
+                pênalti com Neeskens — tudo em apenas 80 segundos.
+              </p>
+              <p>
+                Mas a Alemanha não se abalou. Paul Breitner empatou de pênalti e, antes do
+                intervalo, Gerd Müller girou dentro da área e marcou o gol da virada. A
+                Alemanha segurou a vantagem e se sagrou bicampeã mundial, com Beckenbauer
+                erguendo a taça em casa.
+              </p>
+              <div class="page-highlight">
+                <i class="fa-solid fa-star"></i>
+                <span>
+                  Gerd Müller se aposentou da seleção logo após a Copa com 68 gols em 62 jogos
+                  — um recorde que durou décadas. Ele é considerado um dos maiores artilheiros
+                  de todos os tempos.
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== PÁGINA 3: 1990 (frente) / 1990 continuação (verso) ==================== -->
+        <div class="book-page" style="z-index: 6;">
+          <!-- Frente: Título 1990 -->
+          <div class="page-front">
+            <div class="page-number page-number--right">5</div>
+            <div class="page-content">
+              <div class="page-year-badge-wrapper">
+                <span class="page-year-badge">★ 1990 ★</span>
+              </div>
+              <h3>Força na Itália</h3>
+              <div class="page-sede">
+                <i class="fa-solid fa-location-dot"></i>
+                Sede: Itália
+              </div>
+              <p>
+                A Copa de 1990, na Itália, foi a última disputada pela Alemanha Ocidental. Poucos
+                meses depois, em outubro, a reunificação alemã uniria as duas seleções. A equipe
+                chegou ao torneio sob o comando de Franz Beckenbauer — agora como treinador — e
+                com o capitão Lothar Matthäus como grande estrela.
+              </p>
+              <p>
+                Na fase de grupos, a Alemanha dominou: goleou a Iugoslávia por 4 a 1, massacrou
+                os Emirados Árabes por 5 a 1 e empatou em 1 a 1 com a Colômbia. Nas oitavas,
+                venceu a rival Holanda por 2 a 1, e nas quartas eliminou a Tchecoslováquia por
+                1 a 0.
+              </p>
+              <div class="page-score-box">
+                <span class="team">Alemanha<br>Ocidental</span>
+                <span class="score">1 x 0</span>
+                <span class="team">Argentina</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Verso: continuação 1990 -->
+          <div class="page-back">
+            <div class="page-number page-number--left">6</div>
+            <div class="page-content">
+              <p>
+                Na semifinal, a Alemanha enfrentou a Inglaterra em uma partida emocionante que
+                terminou empatada em 1 a 1 no tempo regulamentar e na prorrogação. Nos pênaltis,
+                os alemães venceram por 4 a 3, mostrando a famosa frieza germânica.
+              </p>
+              <p>
+                A final contra a Argentina de Diego Maradona, em Roma, foi uma partida tensa e
+                com poucas chances claras. Os argentinos jogaram com dois jogadores a menos
+                por expulsões. Aos 85 minutos, o árbitro marcou um pênalti polêmico a favor da
+                Alemanha. Andreas Brehme cobrou com perfeição e fez o único gol da partida.
+              </p>
+              <div class="page-highlight">
+                <i class="fa-solid fa-star"></i>
+                <span>
+                  Franz Beckenbauer se tornou a segunda pessoa a vencer a Copa como jogador
+                  (1974) e como treinador (1990), feito também alcançado por Mário Zagallo
+                  (1958/1962 como jogador e 1970 como técnico).
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== PÁGINA 4: 2014 (frente) / 2014 continuação (verso) ==================== -->
+        <div class="book-page" style="z-index: 5;">
+          <!-- Frente: Título 2014 -->
+          <div class="page-front">
+            <div class="page-number page-number--right">7</div>
+            <div class="page-content">
+              <div class="page-year-badge-wrapper">
+                <span class="page-year-badge">★ 2014 ★</span>
+              </div>
+              <h3>Triunfo no Brasil</h3>
+              <div class="page-sede">
+                <i class="fa-solid fa-location-dot"></i>
+                Sede: Brasil
+              </div>
+              <p>
+                A Copa de 2014, realizada no Brasil, trouxe a consagração de uma geração alemã
+                construída ao longo de mais de uma década. Comandada pelo técnico Joachim Löw,
+                a seleção chegou ao torneio como favorita, com jogadores como Manuel Neuer,
+                Philipp Lahm, Toni Kroos, Thomas Müller e Mesut Özil.
+              </p>
+              <p>
+                Na fase de grupos, a Alemanha estreou goleando Portugal por 4 a 0, empatou com
+                Gana em 2 a 2 e venceu os Estados Unidos por 1 a 0. Nas oitavas, sofreu contra
+                a Argélia e venceu por 2 a 1 na prorrogação. Nas quartas, eliminou a França por
+                1 a 0.
+              </p>
+              <div class="page-score-box">
+                <span class="team">Alemanha</span>
+                <span class="score">1 x 0</span>
+                <span class="team">Argentina</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Verso: continuação 2014 -->
+          <div class="page-back">
+            <div class="page-number page-number--left">8</div>
+            <div class="page-content">
+              <p>
+                Mas o momento mais marcante do torneio — e talvez de toda a história das
+                Copas — foi a semifinal: <strong>Alemanha 7 x 1 Brasil</strong>, no Estádio Mineirão, em
+                Belo Horizonte. A seleção anfitriã, sem Neymar e Thiago Silva, foi
+                completamente dominada. A Alemanha marcou cinco gols em apenas 18 minutos
+                no primeiro tempo, em uma exibição histórica.
+              </p>
+              <p>
+                Na final, disputada no Maracanã contra a Argentina, o jogo foi equilibrado e
+                foi decidido apenas na prorrogação. Aos 113 minutos, Mario Götze recebeu um
+                cruzamento de André Schürrle, dominou no peito e chutou de esquerda para
+                marcar o gol do título. A Alemanha se sagrava tetracampeã mundial.
+              </p>
+              <div class="page-highlight">
+                <i class="fa-solid fa-star"></i>
+                <span>
+                  Miroslav Klose, com 16 gols em Copas do Mundo, tornou-se o maior artilheiro
+                  da história do torneio durante a Copa de 2014, ultrapassando o brasileiro
+                  Ronaldo.
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- === CONTRA CAPA (FUNDO ESTÁTICO) === -->
+        <div class="book-back-cover">
+          <div class="book-back-cover__text">Fim</div>
+          <button class="book-back-cover__restart">
+            <i class="fa-solid fa-rotate-right"></i>
+            Ler novamente
+          </button>
+        </div>
+
+      </div>
+      <!-- /book-pages -->
+
+    </div>
+    <!-- /book-container -->
+
+    <!-- Setas de navegação lateral -->
+    <div class="book-nav-arrows">
+      <button class="book-nav-btn book-nav-prev" title="Página anterior" disabled>
+        <i class="fa-solid fa-chevron-left"></i>
+      </button>
+      <button class="book-nav-btn book-nav-next" title="Próxima página">
+        <i class="fa-solid fa-chevron-right"></i>
+      </button>
+    </div>
+
+    <!-- Indicador de páginas (dots) -->
+    <div class="book-page-indicator">
+      <button class="book-page-dot is-active" title="Capa"></button>
+      <button class="book-page-dot" title="1954"></button>
+      <button class="book-page-dot" title="1974"></button>
+      <button class="book-page-dot" title="1990"></button>
+      <button class="book-page-dot" title="2014"></button>
+    </div>
+
+    <!-- Dica para clicar -->
+    <div class="book-hint">Clique para abrir</div>
+
+  </div>
+  <!-- /book-wrapper -->
+
+  <!-- Botão de voltar à página inicial -->
+  <a href="{{ url_for('index') }}" class="back-to-home-btn" id="btn-back-home">
+    <i class="fa-solid fa-house"></i> Voltar a página inicial
+  </a>
+
+  <!-- Script do livro -->
+  <script src="{{ url_for('static', filename='js/book.js') }}"></script>
+
+ 
+
+</body>
+</html>
